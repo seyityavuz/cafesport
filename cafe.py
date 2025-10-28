@@ -79,6 +79,9 @@ def write_m3u_file(m3u8_links, filename="cafe.m3u", referer=""):
                 matched = next(((cid, url) for cid, url in m3u8_links if cid == kanal_id), None)
 
                 if matched:
+                    kanal_adi = kanal_id.replace("-", " ").title()
+                    new_lines[-1] = f'#EXTINF:-1, {kanal_adi}'
+
                     i += 1
                     if i < len(lines) and lines[i].startswith("#EXTVLCOPT:http-referrer"):
                         i += 1
@@ -117,6 +120,25 @@ channel_ids = [
     "seurosport2",
     "sf1",
     "stabiispor",
+    "sssportplus1"
+]
+
+# Ana işlem
+html, referer_url = find_working_sporcafe()
+
+if html:
+    stream_domain = find_dynamic_player_domain(html)
+    if stream_domain:
+        print(f"\n🔗 Yayın domaini bulundu: {stream_domain}")
+        m3u8_list = build_m3u8_links(stream_domain, referer_url, channel_ids)
+        if m3u8_list:
+            write_m3u_file(m3u8_list, referer=referer_url)
+        else:
+            print("❌ Hiçbir yayın linki oluşturulamadı.")
+    else:
+        print("❌ Yayın domaini bulunamadı.")
+else:
+    print("⛔ Aktif yayın alınamadı.")    "stabiispor",
     "sssportplus1"
 ]
 
