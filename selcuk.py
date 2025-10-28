@@ -78,7 +78,7 @@ def writem3ufile(m3u8_links, filename="5.m3u", referer=""):
         f.write("\n".join(new_lines))
     print(f"✅ Güncelleme tamamlandı: {filename}")
 
-tvg-id ile eşleşecek kanal ID'leri
+# tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
     "selcukbeinsports1",
     "selcukbeinsports2",
