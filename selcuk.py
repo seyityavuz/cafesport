@@ -42,12 +42,13 @@ def build_m3u8_links(base_stream_url, channel_ids):
     return m3u8_links
 
 def write_m3u_file(m3u8_links, filename="selcuksport.m3u", referer=""):
-    if not os.path.exists(filename):
-        print("⛔ Dosya bulunamadı. Yeni dosya oluşturulamaz çünkü eski içerik korunmalı.")
-        return
-
-    with open(filename, "r", encoding="utf-8") as f:
-        lines = f.read().splitlines()
+    lines = []
+    if os.path.exists(filename):
+        with open(filename, "r", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+    else:
+        print("📁 Dosya bulunamadı. Yeni dosya oluşturuluyor...")
+        lines = ["#EXTM3U"]
 
     new_lines = []
     i = 0
@@ -62,7 +63,9 @@ def write_m3u_file(m3u8_links, filename="selcuksport.m3u", referer=""):
                 matched = next(((cid, url) for cid, url in m3u8_links if cid == kanal_id), None)
 
                 if matched:
-                    # Mevcut yayının referer ve url kısmını güncelle
+                    kanal_adi = kanal_id.replace("-", " ").title()
+                    new_lines[-1] = f'#EXTINF:-1, {kanal_adi}'
+
                     i += 1
                     if i < len(lines) and lines[i].startswith("#EXTVLCOPT:http-referrer"):
                         i += 1
@@ -71,37 +74,18 @@ def write_m3u_file(m3u8_links, filename="selcuksport.m3u", referer=""):
 
                     new_lines.append(f"#EXTVLCOPT:http-referrer= {referer}")
                     new_lines.append(matched[1])
-                    continue  # Güncellendi, diğer satıra geç
+                    continue
         i += 1
 
     with open(filename, "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines))
     print(f"✅ Güncelleme tamamlandı: {filename}")
 
-# tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
-    "selcukbeinsports1",
-    "selcukbeinsports2",
-    "selcukbeinsports3",
-    "selcukbeinsports4",
-    "selcukbeinsports5",
-    "selcukbeinsportsmax1",
-    "selcukbeinsportsmax2",
-    "selcukssport",
-    "selcukssport2",
-    "selcuksmartspor",
-    "selcuksmartspor2",
-    "selcuktivibuspor1",
-    "selcuktivibuspor2",
-    "selcuktivibuspor3",
-    "selcuktivibuspor4",
-    "selcukbeinsportshaber",
-    "selcukaspor",
-    "selcukeurosport1",
-    "selcukeurosport2",
-    "selcuksf1",
-    "selcuktabiispor",
-    "ssportplus1"
+    "selcukbeinsports1", "selcukbeinsports2", "selcukbeinsports3", "selcukbeinsports4", "selcukbeinsports5",
+    "selcukbeinsportsmax1", "selcukbeinsportsmax2", "selcukssport", "selcukssport2", "selcuksmartspor", "selcuksmartspor2",
+    "selcuktivibuspor1", "selcuktivibuspor2", "selcuktivibuspor3", "selcuktivibuspor4", "selcukbeinsportshaber",
+    "selcukaspor", "selcukeurosport1", "selcukeurosport2", "selcuksf1", "selcuktabiispor", "ssportplus1"
 ]
 
 # Ana işlem
