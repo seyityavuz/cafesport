@@ -104,7 +104,7 @@ channel_ids = [
     "ssportplus1"
 ]
 
-Ana işlem
+# Ana işlem
 html, refererurl = findworking_selcuksportshd()
 
 if html:
