@@ -105,7 +105,7 @@ channel_ids = [
 ]
 
 # Ana işlem
-html, refererurl = findworking_selcuksportshd()
+html, referer_url = find_working_selcuksportshd()
 
 if html:
     streamdomain = finddynamicplayerdomain(html)
