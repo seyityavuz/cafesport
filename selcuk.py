@@ -128,4 +128,4 @@ if html:
 else:
     print("⛔ Aktif yayın alınamadı.")
 
-Bunun üzerine üsteki değişikliği yaparak ver
+# Bunun üzerine üsteki değişikliği yaparak ver
