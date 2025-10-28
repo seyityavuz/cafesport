@@ -8,7 +8,7 @@ https://tv-trt2.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-name="TRT Türk" tvg-language="Turkish" tvg-country="TR" tvg-id="TRT_Turk" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/0acb34e5-4b37-434e-b555-c7eb0271ba9d.png" group-title="Ulusal",TRT Türk
 https://tv-trtturk.medya.trt.com.tr/master.m3u8
 
-#EXTINF:-1,tvg-name="TRT Türk" tvg-country="TR" tvg-id="selcukbeinsports1" tvg-logo="" group-title="Ulusal",deneme
+#EXTINF:-1, Selcukbeinsports1
 #EXTVLCOPT:http-referrer= https://www.selcuksportshd1825.xyz/
 https://dga1op10s1u4lep.f80fcd777993c210.live/live/selcukbeinsports1/playlist.m3u8
 #EXTINF:-1,selcukbeinsports2
@@ -71,6 +71,6 @@ https://alpha.cf-worker-7df90b083f9d09.workers.dev/live/selcuksf1/playlist.m3u8
 #EXTINF:-1,selcuktabiispor
 #EXTVLCOPT:http-referrer= https://www.selcuksportshd1825.xyz/
 https://alpha.cf-worker-7df90b083f9d09.workers.dev/live/selcuktabiispor/playlist.m3u8
-#EXTINF:-1,tvg-name="TRT Türk" tvg-country="TR" tvg-id="ssportplus1" tvg-logo="" group-title="Ulusal",deneme
+#EXTINF:-1, Ssportplus1
 #EXTVLCOPT:http-referrer= https://www.selcuksportshd1825.xyz/
 https://dga1op10s1u4lep.f80fcd777993c210.live/live/ssportplus1/playlist.m3u8
