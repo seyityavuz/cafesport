@@ -138,23 +138,4 @@ if html:
     else:
         print("❌ Yayın domaini bulunamadı.")
 else:
-    print("⛔ Aktif yayın alınamadı.")    "stabiispor",
-    "sssportplus1"
-]
-
-# Ana işlem
-html, referer_url = find_working_sporcafe()
-
-if html:
-    stream_domain = find_dynamic_player_domain(html)
-    if stream_domain:
-        print(f"\n🔗 Yayın domaini bulundu: {stream_domain}")
-        m3u8_list = build_m3u8_links(stream_domain, referer_url, channel_ids)
-        if m3u8_list:
-            write_m3u_file(m3u8_list, referer=referer_url)
-        else:
-            print("❌ Hiçbir yayın linki oluşturulamadı.")
-    else:
-        print("❌ Yayın domaini bulunamadı.")
-else:
     print("⛔ Aktif yayın alınamadı.")
