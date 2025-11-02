@@ -41,7 +41,7 @@ def build_m3u8_links(base_stream_url, channel_ids):
         m3u8_links.append((cid, full_url))
     return m3u8_links
 
-def write_m3u_file(m3u8_links, filename="5.m3u", referer=""):
+def write_m3u_file(m3u8_links, filename="selcuk.m3u", referer=""):
     lines = []
     if os.path.exists(filename):
         with open(filename, "r", encoding="utf-8") as f:
