@@ -2,16 +2,13 @@ import requests
 import re
 import os
 
-def find_working_selcuksportshd(start=1, end=20):
+def find_working_selcuksportshd(start=1, end=40):
     print("🧭 tvhane domainleri taranıyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
 
     for i in range(start, end + 1):
-        url = f"https://tvhane{i}.com/channel?id=yayinzirve"
-        url = f"https://tvhane{i}.com/channel?id=yayinb2"
-        url = f"https://tvhane{i}.com/channel?id=yayinb3"
-        url = f"https://tvhane{i}.com/channel?id=yayinb4"
-        url = f"https://tvhane{i}.com/channel?id=yayinb5"
+        url = f"https://t.zirvedesin{i}.sbs/yayinzirve.m3u8"
+        
         print(f"🔍 Taranıyor: {url}")
         try:
             response = requests.get(url, headers=headers, timeout=5)
