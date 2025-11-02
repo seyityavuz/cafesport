@@ -14,8 +14,8 @@ def find_working_selcuksportshd(start=1, end=50):
             if response.status_code == 200 and "uxsyplayer" in response.text:
                 print(f"✅ Aktif domain bulundu: {url}")
                 return response.text, url
-        except:
-            print(f"⚠️ Hata: {url}")
+        except Exception as e:
+            print(f"⚠️ Hata: {url} → {e}")
             continue
 
     print("❌ Aktif domain bulunamadı.")
@@ -81,7 +81,6 @@ def write_m3u_file(m3u8_links, filename="tvhane.m3u", referer=""):
         f.write("\n".join(new_lines))
     print(f"✅ Güncelleme tamamlandı: {filename}")
 
-# tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
     "selcukbeinsports1", "selcukbeinsports2", "selcukbeinsports3", "selcukbeinsports4", "selcukbeinsports5",
     "selcukbeinsportsmax1", "selcukbeinsportsmax2", "selcukssport", "selcukssport2", "selcuksmartspor", "selcuksmartspor2",
@@ -89,23 +88,25 @@ channel_ids = [
     "selcukaspor", "selcukeurosport1", "selcukeurosport2", "selcuksf1", "selcuktabiispor", "ssportplus1"
 ]
 
-if html:
-    stream_domain = find_dynamic_player_domain(html)
-    if stream_domain:
-        print(f"\n🔗 Yayın domaini bulundu: {stream_domain}")
-        try:
-            player_page = requests.get(f"{stream_domain}/index.php?id={channel_ids[0]}",
-                                       headers={"User-Agent": "Mozilla/5.0", "Referer": referer_url})
-            base_stream_url = extract_base_stream_url(player_page.text)
-            if base_stream_url:
-                print(f"📡 Base stream URL bulundu: {base_stream_url}")
-                m3u8_list = build_m3u8_links(base_stream_url, channel_ids)
-                write_m3u_file(m3u8_list, referer=referer_url)
-            else:
-                print("❌ baseStreamUrl bulunamadı.")
-        except Exception as e:
-            print(f"⚠️ Hata oluştu: {e}")
+if __name__ == "__main__":
+    html, referer_url = find_working_selcuksportshd()
+    if html:
+        stream_domain = find_dynamic_player_domain(html)
+        if stream_domain:
+            print(f"\n🔗 Yayın domaini bulundu: {stream_domain}")
+            try:
+                player_page = requests.get(f"{stream_domain}/index.php?id={channel_ids[0]}",
+                                           headers={"User-Agent": "Mozilla/5.0", "Referer": referer_url})
+                base_stream_url = extract_base_stream_url(player_page.text)
+                if base_stream_url:
+                    print(f"📡 Base stream URL bulundu: {base_stream_url}")
+                    m3u8_list = build_m3u8_links(base_stream_url, channel_ids)
+                    write_m3u_file(m3u8_list, referer=referer_url)
+                else:
+                    print("❌ baseStreamUrl bulunamadı.")
+            except Exception as e:
+                print(f"⚠️ Hata oluştu: {e}")
+        else:
+            print("❌ Yayın domaini bulunamadı.")
     else:
-        print("❌ Yayın domaini bulunamadı.")
-else:
-    print("⛔ Aktif yayın alınamadı.")
+        print("⛔ Aktif yayın alınamadı.")
