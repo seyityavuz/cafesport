@@ -2,12 +2,12 @@ import requests
 import re
 import os
 
-def find_working_selcuksportshd(start=1825, end=1850):
+def find_working_selcuksportshd(start=1, end=50):
     print("🧭 Selcuksportshd domainleri taranıyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
 
     for i in range(start, end + 1):
-        url = f"https://www.selcuksportshd{i}.xyz/"
+        url = f"https://tvhane/{i}.com.xyz/"
         print(f"🔍 Taranıyor: {url}")
         try:
             response = requests.get(url, headers=headers, timeout=5)
@@ -41,7 +41,7 @@ def build_m3u8_links(base_stream_url, channel_ids):
         m3u8_links.append((cid, full_url))
     return m3u8_links
 
-def write_m3u_file(m3u8_links, filename="selcuk.m3u", referer=""):
+def write_m3u_file(m3u8_links, filename="tvhane.m3u", referer=""):
     lines = []
     if os.path.exists(filename):
         with open(filename, "r", encoding="utf-8") as f:
@@ -88,9 +88,6 @@ channel_ids = [
     "selcuktivibuspor1", "selcuktivibuspor2", "selcuktivibuspor3", "selcuktivibuspor4", "selcukbeinsportshaber",
     "selcukaspor", "selcukeurosport1", "selcukeurosport2", "selcuksf1", "selcuktabiispor", "ssportplus1"
 ]
-
-# Ana işlem
-html, referer_url = find_working_selcuksportshd()
 
 if html:
     stream_domain = find_dynamic_player_domain(html)
