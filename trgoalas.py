@@ -102,7 +102,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     channel_url = site.rstrip("/") + "/channel.html?id=yayinzirve"
-    baseurl = findbaseurl(channel_url)
+    base_url = find_baseurl(channel_url)
     if not base_url:
         print(f"{RED}[HATA] Base URL bulunamadı.{RESET}")
         sys.exit(1)
