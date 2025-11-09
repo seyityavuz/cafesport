@@ -45,7 +45,7 @@ KANALLAR = [
 
 def siteyi_bul():
     print(f"\n{GREEN}[*] Site aranıyor...{RESET}")
-    for i in range(1400, 1470):
+    for i in range(1458, 1458):
         url = f"https://trgoals{i}.xyz/"
         try:
             r = requests.get(url, timeout=5)
