@@ -95,7 +95,7 @@ def generate_m3u(baseurl, referer, user_agent):
         print(f"  ✔ {idx:02d}. {name}")
     return "\n".join(lines)
 
-if name == "main":
+if __name__ == "__main__":
     site = siteyi_bul()
     if not site:
         print(f"{RED}[HATA] Yayın yapan site bulunamadı.{RESET}")
