@@ -63,11 +63,26 @@ def find_baseurl(url):
     try:
         r = requests.get(url, timeout=10)
         r.raise_for_status()
-    except requests.RequestException:
+    except requests.RequestException as e:
+        print(f"{RED}[HATA] Kanal sayfasına erişilemedi: {e}{RESET}")
         return None
-    match = re.search(r'baseurl\s*[:=]\s*["\']([^"\']+)["\']', r.text)
-    if match:
-        return match.group(1)
+
+    print(f"{YELLOW}[DEBUG] Sayfa içeriği örneği:\n{r.text[:1000]}{RESET}")
+
+    patterns = [
+        r'baseurl\s*[:=]\s*["\']([^"\']+)["\']',
+        r'src=["\'](https?://[^"\']+\.m3u8)["\']',
+        r'source\s+src=["\'](https?://[^"\']+\.m3u8)["\']',
+        r'iframe\s+src=["\'](https?://[^"\']+)["\']',
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, r.text, re.IGNORECASE)
+        if match:
+            print(f"{GREEN}[OK] Base URL bulundu: {match.group(1)}{RESET}")
+            return match.group(1)
+
+    print(f"{RED}[HATA] Base URL regex ile bulunamadı.{RESET}")
     return None
 
 def generate_m3u(base_url, referer, user_agent):
@@ -90,11 +105,4 @@ if __name__ == "__main__":
     channel_url = site.rstrip("/") + "/channel.html?id=yayinzirve"
     base_url = find_baseurl(channel_url)
     if not base_url:
-        print(f"{RED}[HATA] Base URL bulunamadı.{RESET}")
-        sys.exit(1)
-
-    playlist = generate_m3u(base_url, site, "Mozilla/5.0")
-    with open("trgoalas.m3u", "w", encoding="utf-8") as f:
-        f.write(playlist)
-
-    print(f"{GREEN}[OK] Playlist oluşturuldu: trgoalas.m3u{RESET}")
+        print(f"{RED
