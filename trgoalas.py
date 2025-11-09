@@ -107,7 +107,7 @@ if __name__ == "__main__":
         print(f"{RED}[HATA] Base URL bulunamadı.{RESET}")
         sys.exit(1)
 
-    playlist = generatem3u(baseurl, site, "Mozilla/5.0")
+    playlist = generate_m3u(baseurl, site, "Mozilla/5.0")
     with open("trgoalas.m3u", "w", encoding="utf-8") as f:
         f.write(playlist)
 
