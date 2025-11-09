@@ -1,4 +1,4 @@
-name: Selcuk kontrol
+name: Trgoals kontrol
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
@@ -28,7 +28,7 @@ jobs:
           pip install -U setuptools wheel Kekik httpx parsel requests
           
       - name: selcuk.py Çalıştır
-        run: python selcuk.py
+        run: python trgoals.py
 
       
       - name: Değişiklik Kontrolü
