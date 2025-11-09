@@ -84,8 +84,31 @@ def find_baseurl(url):
     print(f"{RED}[HATA] Base URL regex ile bulunamadı.{RESET}")
     return None
 
-def generate_m3u(base_url, referer, user_agent):
+def generate_m3u(baseurl, referer, user_agent):
     lines = ["#EXTM3U"]
     for idx, k in enumerate(KANALLAR, start=1):
-        name = k["kanal_adi"]
-        lines.append(f'#EXT
+        name = f"{k['kanal_adi']}"
+        lines.append(f'#EXTINF:-1 tvg-id="{k["tvg_id"]}" tvg-name="{name}",{name}')
+        lines.append(f'#EXTVLCOPT:http-user-agent={user_agent}')
+        lines.append(f'#EXTVLCOPT:http-referrer={referer}')
+        lines.append(base_url + k["dosya"])
+        print(f"  ✔ {idx:02d}. {name}")
+    return "\n".join(lines)
+
+if name == "main":
+    site = siteyi_bul()
+    if not site:
+        print(f"{RED}[HATA] Yayın yapan site bulunamadı.{RESET}")
+        sys.exit(1)
+
+    channel_url = site.rstrip("/") + "/channel.html?id=yayinzirve"
+    baseurl = findbaseurl(channel_url)
+    if not base_url:
+        print(f"{RED}[HATA] Base URL bulunamadı.{RESET}")
+        sys.exit(1)
+
+    playlist = generatem3u(baseurl, site, "Mozilla/5.0")
+    with open("trgoalas.m3u", "w", encoding="utf-8") as f:
+        f.write(playlist)
+
+    print(f"{GREEN}[OK] Playlist oluşturuldu: trgoalas.m3u{RESET}")
