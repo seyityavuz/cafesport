@@ -45,8 +45,7 @@ KANALLAR = [
 
 def siteyi_bul():
     print(f"\n{GREEN}[*] Site aranıyor...{RESET}")
-    for i in range(1450, 1458):
-        url = f"https://trgoals{i}.xyz/"
+        url = f"https://trgoals1458.xyz/"
         try:
             r = requests.get(url, timeout=5)
             if r.status_code == 200 and "channel.html?id=" in r.text:
