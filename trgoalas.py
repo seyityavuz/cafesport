@@ -2,13 +2,13 @@ import requests
 import re
 import sys
 
-Terminal renkleri
+# Terminal renkleri
 RED = "\033[91m"
 GREEN = "\033[92m"
 YELLOW = "\033[93m"
 RESET = "\033[0m"
 
-Kanallar listesi
+# Kanallar listesi
 KANALLAR = [
     {"dosya": "yayinzirve.m3u8", "tvgid": "BeinSports1.tr", "kanaladi": "Bein Sports 1 HD (VIP)"},
     {"dosya": "yayin1.m3u8", "tvgid": "BeinSports1.tr", "kanaladi": "Bein Sports 1 HD"},
