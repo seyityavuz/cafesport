@@ -49,12 +49,11 @@ def siteyi_bul():
         url = f"https://trgoals{i}.xyz/"
         try:
             r = requests.get(url, timeout=5)
-            if r.status_code == 200:
-                if "channel.html?id=" in r.text:
-                    print(f"{GREEN}[OK] Yayın bulundu: {url}{RESET}")
-                    return url
-                else:
-                    print(f"{YELLOW}[-] {url} yayında ama yayın linki yok.{RESET}")
+            if r.status_code == 200 and "channel.html?id=" in r.text:
+                print(f"{GREEN}[OK] Yayın bulundu: {url}{RESET}")
+                return url
+            else:
+                print(f"{YELLOW}[-] {url} yayında ama yayın linki yok.{RESET}")
         except requests.RequestException:
             print(f"{RED}[-] {url} erişilemedi.{RESET}")
     return None
@@ -85,24 +84,4 @@ def find_baseurl(url):
     print(f"{RED}[HATA] Base URL regex ile bulunamadı.{RESET}")
     return None
 
-def generate_m3u(base_url, referer, user_agent):
-    lines = ["#EXTM3U"]
-    for idx, k in enumerate(KANALLAR, start=1):
-        name = f"{k['kanal_adi']}"
-        lines.append(f'#EXTINF:-1 tvg-id="{k["tvg_id"]}" tvg-name="{name}",{name}')
-        lines.append(f'#EXTVLCOPT:http-user-agent={user_agent}')
-        lines.append(f'#EXTVLCOPT:http-referrer={referer}')
-        lines.append(base_url + k["dosya"])
-        print(f"  ✔ {idx:02d}. {name}")
-    return "\n".join(lines)
-
-if __name__ == "__main__":
-    site = siteyi_bul()
-    if not site:
-        print(f"{RED}[HATA] Yayın yapan site bulunamadı.{RESET}")
-        sys.exit(1)
-
-    channel_url = site.rstrip("/") + "/channel.html?id=yayinzirve"
-    base_url = find_baseurl(channel_url)
-    if not base_url:
-        print(f"{RED
+def generate_m3u(base_url, refer
