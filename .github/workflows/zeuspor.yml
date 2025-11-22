@@ -28,7 +28,7 @@ jobs:
           pip install -U setuptools wheel Kekik httpx parsel requests
           
       - name: selcuk.py Çalıştır
-        run: python selcuk.py
+        run: python zeuspor.py
 
       
       - name: Değişiklik Kontrolü
