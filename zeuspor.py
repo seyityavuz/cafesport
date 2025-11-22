@@ -89,13 +89,18 @@ channel_ids = [
     "selcukaspor", "selcukeurosport1", "selcukeurosport2", "selcuksf1", "selcuktabiispor", "ssportplus1"
 ]
 
+# Burada html ve referer_url tanımlanıyor
+html, referer_url = find_working_selcuksportshd()
+
 if html:
     stream_domain = find_dynamic_player_domain(html)
     if stream_domain:
         print(f"\n🔗 Yayın domaini bulundu: {stream_domain}")
         try:
-            player_page = requests.get(f"{stream_domain}/index.php?id={channel_ids[0]}",
-                                       headers={"User-Agent": "Mozilla/5.0", "Referer": referer_url})
+            player_page = requests.get(
+                f"{stream_domain}/index.php?id={channel_ids[0]}",
+                headers={"User-Agent": "Mozilla/5.0", "Referer": referer_url}
+            )
             base_stream_url = extract_base_stream_url(player_page.text)
             if base_stream_url:
                 print(f"📡 Base stream URL bulundu: {base_stream_url}")
