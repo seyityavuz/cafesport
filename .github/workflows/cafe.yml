@@ -22,7 +22,7 @@ jobs:
       - name: Python 3.11 Yükle
         uses: actions/setup-python@v5.3.0
         with:
-          python-version: '3.11'
+          python-version: '3.11.14'
           
       - name: Gereksinimleri Kur
         run: |
