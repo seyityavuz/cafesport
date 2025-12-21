@@ -32,15 +32,6 @@ jobs:
       - name: cafe.py Çalıştır
         run: python cafe.py
 
-      - name: Dosya Kontrolü (Debug)
-        run: |
-          echo "---- Çalışma Dizini ----"
-          ls -lh
-          echo "---- Git Durumu ----"
-          git status
-          echo "---- cafe.m3u İçeriği ----"
-          cat cafe.m3u || echo "cafe.m3u bulunamadı"
-          
       - name: Değişiklik Kontrolü
         id: degisiklik_kontrol
         run: |
@@ -54,5 +45,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "🔄 Cafe güncellendi" -m "🕒 $(date -u)"
+          git commit -m "🔄 Cafe güncellendi" -m "🕒 Otomatik işlem - $GITHUB_SHA"
           git push
