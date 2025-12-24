@@ -42,43 +42,18 @@ def build_m3u8_links(base_stream_url, channel_ids):
     return m3u8_links
 
 def write_m3u_file(m3u8_links, filename="selcuk.m3u", referer=""):
-    lines = []
-    if os.path.exists(filename):
-        with open(filename, "r", encoding="utf-8") as f:
-            lines = f.read().splitlines()
-    else:
-        print("📁 Dosya bulunamadı. Yeni dosya oluşturuluyor...")
-        lines = ["#EXTM3U"]
+    new_lines = ["#EXTM3U"]
 
-    new_lines = []
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        new_lines.append(line)
+    for cid, url in m3u8_links:
+        kanal_adi = cid.replace("-", " ").title()
+        new_lines.append(f'#EXTINF:-1, {kanal_adi}')
+        new_lines.append(f"#EXTVLCOPT:http-referrer= {referer}")
+        new_lines.append(url)
 
-        if line.startswith("#EXTINF") and 'tvg-id="' in line:
-            tvg_id_match = re.search(r'tvg-id="([^"]+)"', line)
-            if tvg_id_match:
-                kanal_id = tvg_id_match.group(1)
-                matched = next(((cid, url) for cid, url in m3u8_links if cid == kanal_id), None)
-
-                if matched:
-                    kanal_adi = kanal_id.replace("-", " ").title()
-                    new_lines[-1] = f'#EXTINF:-1, {kanal_adi}'
-
-                    i += 1
-                    if i < len(lines) and lines[i].startswith("#EXTVLCOPT:http-referrer"):
-                        i += 1
-                    if i < len(lines) and lines[i].startswith("http"):
-                        i += 1
-
-                    new_lines.append(f"#EXTVLCOPT:http-referrer= {referer}")
-                    new_lines.append(matched[1])
-                    continue
-        i += 1
-
+    # Dosya her zaman üzerine yazılır, yoksa yeni oluşturulur
     with open(filename, "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines))
+
     print(f"✅ Güncelleme tamamlandı: {filename}")
 
 # tvg-id ile eşleşecek kanal ID'leri
