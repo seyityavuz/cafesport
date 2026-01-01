@@ -71,6 +71,9 @@ https://dga1op10s1u3leo.38f3bb9511487c.click/live/stv8/playlist.m3u8
 #EXTINF:-1, Strtspor
 #EXTVLCOPT:http-referrer= https://www.sporcafe6.xyz/
 https://dga1op10s1u3leo.38f3bb9511487c.click/live/strtspor/playlist.m3u8
+#EXTINF:-1, Strtspor2
+#EXTVLCOPT:http-referrer= https://www.sporcafe6.xyz/
+https://dga1op10s1u3leo.38f3bb9511487c.click/live/strtspor2/playlist.m3u8
 #EXTINF:-1, Satv
 #EXTVLCOPT:http-referrer= https://www.sporcafe6.xyz/
 https://dga1op10s1u3leo.38f3bb9511487c.click/live/satv/playlist.m3u8
