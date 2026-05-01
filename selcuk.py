@@ -2,12 +2,12 @@ import requests
 import re
 import os
 
-def find_working_selcuksportshd(start=1825, end=1900):
-    print("🧭 Selcuksportshd domainleri taranıyor...")
+def find_working_selcuksportshd():
+    print("🧭 selcuksportshd domaini kontrol ediliyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
 
-    for i in range(start, end + 1):
-        url = f"https://www.selcuksportshd{i}.xyz/"
+    # Burada sadece sabit bir domain kontrol ediliyor
+    url = "https://www.selcuksportshdf60ed33068.xyz/"
         print(f"🔍 Taranıyor: {url}")
         try:
             response = requests.get(url, headers=headers, timeout=5)
