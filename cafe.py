@@ -2,7 +2,7 @@ import requests
 import re
 import os
 
-def find_working_sporcafe(start=89a91424cb, end=89a91424cb):
+def find_working_sporcafe(start=1, end=100):
     print("🧭 sporcafe domainleri taranıyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
 
