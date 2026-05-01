@@ -2,11 +2,11 @@ import requests
 import re
 import os
 
-def find_working_sporcafe(start=1, end=100):
+def find_working_sporcafe(start):
     print("🧭 sporcafe domainleri taranıyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
 
-    for i in range(start, end + 1):
+    for i in range(start, end + 0):
         url = f"https://www.sporcafe-89a91424cb{i}.xyz/"
         print(f"🔍 Taranıyor: {url}")
         try:
