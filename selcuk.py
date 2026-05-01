@@ -9,14 +9,13 @@ def find_working_selcuksportshd():
     # Burada sadece sabit bir domain kontrol ediliyor
     url = "https://www.selcuksportshdf60ed33068.xyz/"
     print(f"🔍 Kontrol ediliyor: {url}")
-        try:
-            response = requests.get(url, headers=headers, timeout=5)
-            if response.status_code == 200 and "uxsyplayer" in response.text:
-                print(f"✅ Aktif domain bulundu: {url}")
-                return response.text, url
-        except:
-            print(f"⚠️ Hata: {url}")
-            continue
+    try:
+        response = requests.get(url, headers=headers, timeout=5)
+        if response.status_code == 200 and "uxsyplayer" in response.text:
+            print(f"✅ Aktif domain bulundu: {url}")
+            return response.text, url
+    except Exception as e:
+        print(f"⚠️ Hata: {url} ({e})")
 
     print("❌ Aktif domain bulunamadı.")
     return None, None
@@ -58,35 +57,12 @@ def write_m3u_file(m3u8_links, filename="selcuk.m3u", referer=""):
 
 # tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
-    "selcukbeinsports1", 
-    "selcukbeinsports2", 
-    "selcukbeinsports3", 
-    "selcukbeinsports4", 
-    "selcukbeinsports5",
-    "selcukbeinsportsmax1", 
-    "selcukbeinsportsmax2", 
-    "selcukssport", 
-    "selcukssport2", 
-    "selcuksmartspor", 
-    "selcuksmartspor2",
-    "selcuktivibuspor1", 
-    "selcuktivibuspor2", 
-    "selcuktivibuspor3", 
-    "selcuktivibuspor4", 
-    "selcukbeinsportshaber",
-    "selcukaspor", 
-    "selcukeurosport1", 
-    "selcukeurosport2", 
-    "selcuksf1", 
-    "selcuktabiispor",
-    "selcuktrt1",
-    "selcuktv8",
-    "selcuktrtspor",
-    "selcuktrtspor2",
-    "selcukatv",
-    "selcukdazn1",
-    "selcukdazn2",
-    "ssportplus1"
+    "selcukbeinsports1", "selcukbeinsports2", "selcukbeinsports3", "selcukbeinsports4", "selcukbeinsports5",
+    "selcukbeinsportsmax1", "selcukbeinsportsmax2", "selcukssport", "selcukssport2", "selcuksmartspor",
+    "selcuksmartspor2", "selcuktivibuspor1", "selcuktivibuspor2", "selcuktivibuspor3", "selcuktivibuspor4",
+    "selcukbeinsportshaber", "selcukaspor", "selcukeurosport1", "selcukeurosport2", "selcuksf1",
+    "selcuktabiispor", "selcuktrt1", "selcuktv8", "selcuktrtspor", "selcuktrtspor2", "selcukatv",
+    "selcukdazn1", "selcukdazn2", "ssportplus1"
 ]
 
 # Ana işlem
@@ -97,8 +73,10 @@ if html:
     if stream_domain:
         print(f"\n🔗 Yayın domaini bulundu: {stream_domain}")
         try:
-            player_page = requests.get(f"{stream_domain}/index.php?id={channel_ids[0]}",
-                                       headers={"User-Agent": "Mozilla/5.0", "Referer": referer_url})
+            player_page = requests.get(
+                f"{stream_domain}/index.php?id={channel_ids[0]}",
+                headers={"User-Agent": "Mozilla/5.0", "Referer": referer_url}
+            )
             base_stream_url = extract_base_stream_url(player_page.text)
             if base_stream_url:
                 print(f"📡 Base stream URL bulundu: {base_stream_url}")
