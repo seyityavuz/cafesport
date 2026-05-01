@@ -2,33 +2,33 @@ import requests
 import re
 import os
 
-def find_working_sporcafe(start):
-    print("🧭 sporcafe domainleri taranıyor...")
+def find_working_sporcafe():
+    print("🧭 sporcafe domaini kontrol ediliyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
 
-    for i in range(start, end + 0):
-        url = f"https://www.sporcafe-89a91424cb{i}.xyz/"
-        print(f"🔍 Taranıyor: {url}")
-        try:
-            response = requests.get(url, headers=headers, timeout=5)
-            if response.status_code == 200 and "uxsyplayer" in response.text:
-                print(f"✅ Aktif domain bulundu: {url}")
-                return response.text, url
-        except:
-            print(f"⚠️ Hata: {url}")
-            continue
+    # Burada sadece sabit bir domain kontrol ediliyor
+    url = "https://www.sporcafe-89a91424cb.xyz/"
+    print(f"🔍 Kontrol ediliyor: {url}")
+    try:
+        response = requests.get(url, headers=headers, timeout=5)
+        if response.status_code == 200 and "uxsyplayer" in response.text:
+            print(f"✅ Aktif domain bulundu: {url}")
+            return response.text, url
+        else:
+            print("❌ Domain aktif değil.")
+    except Exception as e:
+        print(f"⚠️ Hata: {e}")
 
-    print("❌ Aktif domain bulunamadı.")
     return None, None
 
 def find_dynamic_player_domain(page_html):
-    match = re.search(r'https?://(main\.uxsyplayer[0-9a-zA-Z\-]+\.click)', page_html)
+    match = re.search(r'https?://(main\.uxsyplayer[\w\-]+\.click)', page_html)
     if match:
         return f"https://{match.group(1)}"
     return None
 
 def extract_base_stream_url(html):
-    match = re.search(r'this\.adsBaseUrl\s*=\s*[\'"]([^\'"]+)', html)
+    match = re.search(r'(?:this\.adsBaseUrl|var\s+baseUrl)\s*=\s*[\'"]([^\'"]+)', html)
     if match:
         return match.group(1)
     return None
