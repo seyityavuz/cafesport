@@ -8,7 +8,7 @@ def find_working_selcuksportshd():
 
     # Burada sadece sabit bir domain kontrol ediliyor
     url = "https://www.selcuksportshdf60ed33068.xyz/"
-        print(f"🔍 Taranıyor: {url}")
+    print(f"🔍 Kontrol ediliyor: {url}")
         try:
             response = requests.get(url, headers=headers, timeout=5)
             if response.status_code == 200 and "uxsyplayer" in response.text:
