@@ -7,7 +7,7 @@ def find_working_selcuksportshd():
     headers = {"User-Agent": "Mozilla/5.0"}
 
     # Burada sadece sabit bir domain kontrol ediliyor
-    url = "https://patronlive24.cfd/"
+    url = "https://selcuksportshdv3.xyz/"
     print(f"🔍 Kontrol ediliyor: {url}")
     try:
         response = requests.get(url, headers=headers, timeout=5)
