@@ -75,7 +75,7 @@ def write_m3u_file(m3u8_links, filename="cafe.m3u", referer=""):
 
 # tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
-    "sbeinsports-1",
+    "#bein-1-canli-izle",
     "sbeinsports-2",
     "sbeinsports-3",
     "sbeinsports-4",
