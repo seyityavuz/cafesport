@@ -7,7 +7,7 @@ def find_working_sporcafe():
     headers = {"User-Agent": "Mozilla/5.0"}
 
     # Burada sadece sabit bir domain kontrol ediliyor
-    url = "https://www.sporcafe66.top"
+    url = "https://www.sporcafe66.top/"
     print(f"🔍 Kontrol ediliyor: {url}")
     try:
         response = requests.get(url, headers=headers, timeout=5)
@@ -75,7 +75,7 @@ def write_m3u_file(m3u8_links, filename="cafe.m3u", referer=""):
 
 # tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
-    "bein-1",
+    "#bein-1-canli-izle",
     "sbeinsports-2",
     "sbeinsports-3",
     "sbeinsports-4",
