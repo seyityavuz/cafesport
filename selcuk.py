@@ -64,7 +64,7 @@ channel_ids = [
     "selcukksbein5",
     "selcukksbeinsportsmax1",
     "selcukksbeinsportsmax2",
-    "selcukksssport",
+    "selcukksssport1",
     "selcukksssport2",
     "selcukkssmartspor",
     "selcukkssmartspor2",
