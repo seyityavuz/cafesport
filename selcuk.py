@@ -57,12 +57,35 @@ def write_m3u_file(m3u8_links, filename="selcuk.m3u", referer=""):
 
 # tvg-id ile eşleşecek kanal ID'leri
 channel_ids = [
-    "selcukksbein1", "selcukksbein2", "selcukksbein3", "selcukksbein4", "selcukksbein5",
-    "selcukbeinsportsmax1", "selcukbeinsportsmax2", "selcukssport", "selcukssport2", "selcuksmartspor",
-    "selcuksmartspor2", "selcuktivibuspor1", "selcuktivibuspor2", "selcuktivibuspor3", "selcuktivibuspor4",
-    "selcukbeinsportshaber", "selcukaspor", "selcukeurosport1", "selcukeurosport2", "selcuksf1",
-    "selcuktabiispor", "selcuktrt1", "selcuktv8", "selcuktrtspor", "selcuktrtspor2", "selcukatv",
-    "selcukdazn1", "selcukdazn2", "ssportplus1"
+    "selcukksbein1",
+    "selcukksbein2",
+    "selcukksbein3",
+    "selcukksbein4",
+    "selcukksbein5",
+    "selcukbeinsportsmax1",
+    "selcukbeinsportsmax2",
+    "selcukssport",
+    "selcukssport2",
+    "selcuksmartspor",
+    "selcuksmartspor2",
+    "selcuktivibuspor1",
+    "selcuktivibuspor2",
+    "selcuktivibuspor3",
+    "selcuktivibuspor4",
+    "selcukbeinsportshaber",
+    "selcukaspor",
+    "selcukeurosport1",
+    "selcukeurosport2",
+    "selcuksf1",
+    "selcuktabiispor",
+    "selcuktrt1",
+    "selcuktv8",
+    "selcuktrtspor",
+    "selcuktrtspor2",
+    "selcukatv",
+    "selcukdazn1",
+    "selcukdazn2",
+    "ssportplus1"
 ]
 
 # Ana işlem
