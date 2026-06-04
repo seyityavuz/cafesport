@@ -7,7 +7,7 @@ def find_working_sporcafe():
     headers = {"User-Agent": "Mozilla/5.0"}
 
     # Burada sadece sabit bir domain kontrol ediliyor
-    url = "https://www.sporcafe-f73f4b1803.xyz/"
+    url = "https://www.sporcafe-c796362544.xyz/"
     print(f"🔍 Kontrol ediliyor: {url}")
     try:
         response = requests.get(url, headers=headers, timeout=5)
